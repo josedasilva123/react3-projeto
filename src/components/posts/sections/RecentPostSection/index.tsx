@@ -17,7 +17,6 @@ export function RecentPostSection() {
           categoryId_ne: 1,
           _limit: 3,
         });
-        console.log(data);
         setPostList(data);
       } catch (error) {
         console.log(error);
