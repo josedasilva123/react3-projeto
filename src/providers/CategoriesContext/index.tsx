@@ -14,13 +14,12 @@ export function CategoriesProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [categoryList, setCategoryList] = useState<ICategory[]>([]);
 
   useEffect(() => {
     async function init() {
       try {
-        setLoading(true);
         const data = await categoriesRequest.getMany();
         setCategoryList(data);
       } catch (error) {
