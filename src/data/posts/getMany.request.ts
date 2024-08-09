@@ -3,6 +3,7 @@ import { IPost } from "../../interfaces/posts.interface";
 
 interface Params {
   categoryId?: number;
+  categoryId_ne?: number;
   _limit?: number;
 }
 
