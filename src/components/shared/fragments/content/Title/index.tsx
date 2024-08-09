@@ -1,8 +1,10 @@
 import { HTMLAttributes } from "react";
 
+export type TitleTags = "h1" | "h2" | "h3" | "h4";
+
 interface Props extends HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
-  tag: "h1" | "h2" | "h3" | "h4";
+  tag: TitleTags;
 }
 
 export function Title({ children, tag, ...rest }: Props) {

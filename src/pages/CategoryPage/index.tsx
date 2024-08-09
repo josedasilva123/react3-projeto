@@ -1,7 +1,9 @@
+import { ArchivePostSection } from "../../components/posts/sections/ArchivePostSection";
+
 export function CategoryPage() {
   return (
     <>
-      <h1>Category page</h1>
+      <ArchivePostSection />
     </>
   );
 }
