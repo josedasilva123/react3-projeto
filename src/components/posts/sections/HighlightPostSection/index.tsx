@@ -13,7 +13,8 @@ export function HighlightPostSection() {
     async function init() {
       try {
         setLoading(true);
-        const data = await postsRequest.getMany({ categoryId: "1" });
+        const data = await postsRequest.getMany({ categoryId: 1, _limit: 2 });
+        console.log(data);
         setPostList(data);
       } catch (error) {
         console.log(error);
@@ -35,7 +36,7 @@ export function HighlightPostSection() {
             <>
               {postList.length > 0 ? (
                 <ul>
-                  {postList.slice(0, 2).map((post) => (
+                  {postList.map((post) => (
                     <PostCard key={post.id} post={post} />
                   ))}
                 </ul>
