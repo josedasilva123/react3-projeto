@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { IPost } from "../../../../../interfaces/posts.interface";
 import { Title } from "../../../../shared/fragments/content/Title";
-import { Text } from "../../../../shared/fragments/content/Text";
+import { CategoryName } from "../../../../categories/fragments/CategoryName";
 
 interface Props {
   post: IPost;
@@ -14,7 +14,7 @@ export function PostCard({ post }: Props) {
         {post.image ? (
           <img src={post.image} alt={`Ilustração do post ${post.title}`} />
         ) : null}
-        <Text tag="span">Categoria</Text>
+        <CategoryName categoryId={post.categoryId} />
         <Title tag="h3">{post.title}</Title>
       </Link>
     </li>
