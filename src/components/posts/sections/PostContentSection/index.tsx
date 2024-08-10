@@ -1,36 +1,12 @@
-import { useEffect, useState } from "react";
+import { useSinglePost } from "../../../../hooks/useSinglePost";
 import { Breadcrumbs } from "../../../shared/fragments/content/Breadcrumbs";
 import { Text } from "../../../shared/fragments/content/Text";
 import { Title } from "../../../shared/fragments/content/Title";
-import { IPost } from "../../../../interfaces/posts.interface";
-import { postsRequest } from "../../../../data/posts/_index";
-import { useParams } from "react-router-dom";
 
 export function PostContentSection() {
-  const params = useParams();
+  const { post } = useSinglePost();
 
-  const [loading, setLoading] = useState(false);
-  const [post, setPost] = useState<IPost | null>(null);
-
-  useEffect(() => {
-    async function init() {
-      try {
-        setLoading(true);
-        const data = await postsRequest.getOne(params.id!);
-        setPost(data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    init();
-  }, [params.id]);
-
-  return !post || loading ? (
-    <Text tag="p">Carregando...</Text>
-  ) : (
+  return post ? (
     <section>
       <Breadcrumbs pageTitle={post.title} />
       <div>
@@ -41,10 +17,8 @@ export function PostContentSection() {
         <Title tag="h1">{post.title}</Title>
         {post.excerpt ? <Text tag="p">{post.excerpt}</Text> : null}
 
-        <Text tag="p">
-          {post.content}
-        </Text>
+        <Text tag="p">{post.content}</Text>
       </div>
     </section>
-  );
+  ) : null;
 }
