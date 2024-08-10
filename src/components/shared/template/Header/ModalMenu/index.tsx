@@ -1,15 +1,24 @@
 import { Link } from "react-router-dom";
 import { Title } from "../../../fragments/content/Title";
 import { Modal } from "../../../structures/Modal";
+import { useCategories } from "../../../../../hooks/useCategories";
 
-export function ModalMenu() {
+interface Props{
+  onClose: () => void;
+}
+
+export function ModalMenu({ onClose }: Props) {
+  const { categoryList } = useCategories();
+
   return (
-    <Modal onClose={() => console.log("Fechar")}>
+    <Modal onClose={onClose}>
       <Title tag="h2">Menu</Title>
       <ul>
-        <li>
-          <Link to="/">Categoria 1</Link>
-        </li>
+        {categoryList.map((category) => (
+          <li key={category.id}>
+            <Link to={`/categoria/${category.id}`}>{category.label}</Link>
+          </li>
+        ))}
       </ul>
     </Modal>
   );
