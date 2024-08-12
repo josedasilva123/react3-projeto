@@ -2,15 +2,18 @@ import { FormEvent, useState } from "react";
 import { Button } from "../../../../shared/fragments/buttons/Button";
 import { Input } from "../../../../shared/fragments/fields/Input";
 import { Textarea } from "../../../../shared/fragments/fields/Textarea";
+import { useComments } from "../../../../../hooks/useComments";
 
 export function CreateCommentForm() {
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
 
+  const { addComment } = useComments();
+
   function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(name, comment);
+    addComment({ author: name, text: comment }, setLoading);
   }
 
   return (
@@ -23,6 +26,7 @@ export function CreateCommentForm() {
         value={name}
         onChange={(e) => setName(e.target.value)}
         required
+        disabled={loading}
       />
       <Textarea
         label="Seu comentário"
@@ -32,8 +36,11 @@ export function CreateCommentForm() {
         value={comment}
         onChange={(e) => setComment(e.target.value)}
         required
+        disabled={loading}
       />
-      <Button type="submit">Comentar</Button>
+      <Button type="submit" disabled={loading}>
+        {loading ? "Comentando..." : "Comentar"}
+      </Button>
     </form>
   );
 }
