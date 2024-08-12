@@ -3,14 +3,19 @@ import { PostContentSection } from "../../components/posts/sections/PostContentS
 import { ReadmorePostSection } from "../../components/posts/sections/ReadmorePostSection";
 import { Text } from "../../components/shared/fragments/content/Text";
 import { useSinglePost } from "../../hooks/useSinglePost";
+import { CommentsProvider } from "../../providers/CommentsContext";
 
 export function SinglePostPage() {
   const { loading, post } = useSinglePost();
 
-  return loading || !post ? <Text tag="p">Carregando...</Text> : (
+  return loading || !post ? (
+    <Text tag="p">Carregando...</Text>
+  ) : (
     <>
       <PostContentSection />
-      <PostCommentsSection />
+      <CommentsProvider>
+        <PostCommentsSection />
+      </CommentsProvider>
       <ReadmorePostSection />
     </>
   );
