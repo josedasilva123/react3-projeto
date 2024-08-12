@@ -4,6 +4,7 @@ import { Input } from "../../../../shared/fragments/fields/Input";
 import { Textarea } from "../../../../shared/fragments/fields/Textarea";
 
 export function CreateCommentForm() {
+  const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
 
