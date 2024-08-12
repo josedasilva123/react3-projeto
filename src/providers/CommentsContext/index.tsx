@@ -21,7 +21,7 @@ export interface Context {
     setLoading: Dispatch<SetStateAction<boolean>>
   ) => Promise<void>;
   isCreateModalVisible: boolean;
-  setIsCraeteModalVisible: Dispatch<SetStateAction<boolean>>;
+  setIsCreateModalVisible: Dispatch<SetStateAction<boolean>>;
 }
 
 export const CommentsContext = createContext({} as Context);

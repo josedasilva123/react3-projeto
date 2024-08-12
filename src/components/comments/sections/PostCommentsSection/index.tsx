@@ -1,5 +1,4 @@
 import { useComments } from "../../../../hooks/useComments";
-import { Button } from "../../../shared/fragments/buttons/Button";
 import { Text } from "../../../shared/fragments/content/Text";
 import { Title } from "../../../shared/fragments/content/Title";
 import { CreateCommentModal } from "../../structures/modals/CreateCommentModal";
@@ -14,7 +13,7 @@ export function PostCommentsSection() {
     <section>
       <div>
         <Title tag="h2">Comentários</Title>
-        <Button>Deixar comentário</Button>
+        <CreateCommentModal />
       </div>
       {commentList.length > 0 ? (
         <ul>
@@ -25,8 +24,6 @@ export function PostCommentsSection() {
       ) : (
         <Text tag="p">Seja o primeiro a comentar.</Text>
       )}
-
-      <CreateCommentModal />
     </section>
   );
 }
