@@ -1,7 +1,13 @@
 import { createContext, useState } from "react";
 import { IToast, ToastTypes } from "../../interfaces/toasts.interface";
 
-export const ToastContext = createContext({});
+export interface Context{
+  toastList: IToast[];
+  toast(text: string, type: ToastTypes): void;
+  removeToast(removingId: number): void;
+}
+
+export const ToastContext = createContext({} as Context);
 
 export function ToastProvider({ children }: { children: React.ReactNode }) {
   const [count, setCount] = useState(1);
@@ -17,5 +23,9 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     setCount((count) => count + 1);
   }
 
-  return <ToastContext.Provider value={{}}>{children}</ToastContext.Provider>;
+  function removeToast(removingId: number){
+    setToastList((toastList) => toastList.filter((toast) => toast.id !== removingId));
+  }
+
+  return <ToastContext.Provider value={{ toastList, toast, removeToast }}>{children}</ToastContext.Provider>;
 }
