@@ -1,10 +1,11 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext } from "react";
 import { ICategory } from "../../interfaces/categories.interface";
 import { categoriesRequest } from "../../data/categories/_index";
+import { useQuery } from "@tanstack/react-query";
 
 export interface Context {
   loading: boolean;
-  categoryList: ICategory[];
+  categoryList?: ICategory[];
 }
 
 export const CategoriesContext = createContext({} as Context);
@@ -14,22 +15,14 @@ export function CategoriesProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [loading, setLoading] = useState(true);
-  const [categoryList, setCategoryList] = useState<ICategory[]>([]);
+  const { isLoading: loading, data: categoryList } = useQuery({
+    queryKey: ["categories"],
+    queryFn: async () => {
+      const data = await categoriesRequest.getMany();
 
-  useEffect(() => {
-    async function init() {
-      try {
-        const data = await categoriesRequest.getMany();
-        setCategoryList(data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    init();
-  }, []);
+      return data;
+    },
+  });
 
   return (
     <CategoriesContext.Provider value={{ loading, categoryList }}>

@@ -14,7 +14,7 @@ export function ModalMenu({ onClose }: Props) {
     <Modal onClose={onClose}>
       <Title tag="h2">Menu</Title>
       <ul>
-        {categoryList.map((category) => (
+        {categoryList?.map((category) => (
           <li key={category.id}>
             <Link to={`/categoria/${category.id}`}>{category.label}</Link>
           </li>
