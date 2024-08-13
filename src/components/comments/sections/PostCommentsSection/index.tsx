@@ -15,7 +15,7 @@ export function PostCommentsSection() {
         <Title tag="h2">Comentários</Title>
         <CreateCommentModal />
       </div>
-      {commentList.length > 0 ? (
+      {commentList && commentList.length > 0 ? (
         <ul>
           {commentList.map((comment) => (
             <CommentCard key={comment.id} comment={comment} />

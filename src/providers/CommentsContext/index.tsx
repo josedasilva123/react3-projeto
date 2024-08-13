@@ -13,10 +13,11 @@ import { commentsRequest } from "../../data/comments/_index";
 import { useParams } from "react-router-dom";
 import { useSinglePost } from "../../hooks/useSinglePost";
 import { useToast } from "../../hooks/useToast";
+import { useQuery } from "@tanstack/react-query";
 
 export interface Context {
   loading: boolean;
-  commentList: IComment[];
+  commentList?: IComment[];
   addComment: (
     formData: Omit<TCommentCreateData, "postId">,
     setLoading: Dispatch<SetStateAction<boolean>>
@@ -28,8 +29,6 @@ export interface Context {
 export const CommentsContext = createContext({} as Context);
 
 export function CommentsProvider({ children }: { children: React.ReactNode }) {
-  const [loading, setLoading] = useState(false);
-  const [commentList, setCommentList] = useState<IComment[]>([]);
   const [isCreateModalVisible, setIsCreateModalVisible] = useState(false);  
 
   const params = useParams();
@@ -37,20 +36,14 @@ export function CommentsProvider({ children }: { children: React.ReactNode }) {
   const { post } = useSinglePost();
   const { toast } = useToast();
 
-  useEffect(() => {
-    async function init() {
-      try {
-        setLoading(true);
-        const data = await commentsRequest.getManyFromPost(params.id!);
-        setCommentList(data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
+  const { isLoading: loading, data: commentList } = useQuery({
+    queryKey: ["comments", params.id],
+    queryFn: async () => {
+      const data = await commentsRequest.getManyFromPost(params.id!);
+
+      return data;
     }
-    init();
-  }, [params.id]);
+  });
 
   async function addComment(
     formData: Omit<TCommentCreateData, "postId">,
