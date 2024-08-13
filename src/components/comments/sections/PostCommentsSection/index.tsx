@@ -12,7 +12,7 @@ export function PostCommentsSection() {
   ) : (
     <section>
       <div>
-        <Title tag="h2">Comentários</Title>
+        <Title tag="h2" size="three" titleStyle="secondary">Comentários</Title>
         <CreateCommentModal />
       </div>
       {commentList && commentList.length > 0 ? (

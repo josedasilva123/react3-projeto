@@ -19,7 +19,7 @@ export function RecentPostSection() {
 
   return (
     <section>
-      <Title tag="h2">Posts Recentes</Title>
+      <Title tag="h2" size="two" titleStyle="primary" italic>Posts Recentes</Title>
       {loading ? (
         <Text tag="p">Carregando...</Text>
       ) : (

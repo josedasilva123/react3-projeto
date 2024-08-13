@@ -21,7 +21,7 @@ export function ReadmorePostSection() {
     <Text tag="p">Carregando...</Text>
   ) : (
     <section>
-      <Title tag="h2">Leia também</Title>
+      <Title tag="h2" size="two" titleStyle="primary" italic>Leia também</Title>
       <PostList postList={postList} />
     </section>
   );

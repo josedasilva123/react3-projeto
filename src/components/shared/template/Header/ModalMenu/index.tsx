@@ -12,7 +12,7 @@ export function ModalMenu({ onClose }: Props) {
 
   return (
     <Modal onClose={onClose}>
-      <Title tag="h2">Menu</Title>
+      <Title tag="h2" size="one" titleStyle="primary" italic>Menu</Title>
       <ul>
         {categoryList?.map((category) => (
           <li key={category.id}>

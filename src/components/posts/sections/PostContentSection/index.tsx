@@ -14,7 +14,7 @@ export function PostContentSection() {
           <img src={post.image} alt={`Ilustração para post ${post.title}`} />
         ) : null}
 
-        <Title tag="h1">{post.title}</Title>
+        <Title tag="h1" size="two" titleStyle="primary" italic>{post.title}</Title>
         {post.excerpt ? <Text tag="p">{post.excerpt}</Text> : null}
 
         <Text tag="p">{post.content}</Text>

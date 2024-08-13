@@ -15,7 +15,7 @@ export function PostCard({ post }: Props) {
         <img src={post.image} alt={`Ilustração do post ${post.title}`} />
         <div>
           <CategoryName categoryId={post.categoryId} />
-          <Title tag="h3">{post.title}</Title>
+          <Title tag="h3" size="three" titleStyle="secondary">{post.title}</Title>
         </div>
         <Button>Ir para o post</Button>
       </Link>

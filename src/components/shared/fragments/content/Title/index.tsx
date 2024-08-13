@@ -7,7 +7,7 @@ interface Props extends Omit<HTMLAttributes<HTMLElement>, "className"> {
   tag: TitleTags;
   size: "one" | "two" | "three" | "four";
   titleStyle: "primary" | "secondary";
-  italic: boolean;
+  italic?: boolean;
 }
 
 export function Title({

@@ -17,7 +17,9 @@ export function HighlightPostSection() {
   return (
     <section>
       <div>
-        <Title tag="h2">Destaques</Title>
+        <Title tag="h2" size="one" titleStyle="primary" italic>
+          Destaques
+        </Title>
         <div>
           {loading ? (
             <Text tag="p">Carregando...</Text>

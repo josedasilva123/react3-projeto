@@ -8,7 +8,7 @@ interface Props {
 export function TitleBox({ title, tag }: Props) {
   return (
     <div>
-      <Title tag={tag}>{title}</Title>
+      <Title tag={tag} size="two" titleStyle="primary" italic>{title}</Title>
     </div>
   );
 }
