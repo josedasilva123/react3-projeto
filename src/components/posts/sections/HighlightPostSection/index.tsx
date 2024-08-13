@@ -1,29 +1,18 @@
-import { useEffect, useState } from "react";
 import { Text } from "../../../shared/fragments/content/Text";
 import { Title } from "../../../shared/fragments/content/Title";
-import { IPost } from "../../../../interfaces/posts.interface";
 import { postsRequest } from "../../../../data/posts/_index";
 import { PostCard } from "./PostCard";
+import { useQuery } from "@tanstack/react-query";
 
 export function HighlightPostSection() {
-  const [loading, setLoading] = useState(false);
-  const [postList, setPostList] = useState<IPost[]>([]);
+  const { isLoading: loading, data: postList } = useQuery({
+    queryKey: ["highlights"],
+    queryFn: async () => {
+      const data = await postsRequest.getMany({ categoryId: 1, _limit: 2 });
 
-  useEffect(() => {
-    async function init() {
-      try {
-        setLoading(true);
-        const data = await postsRequest.getMany({ categoryId: 1, _limit: 2 });
-        console.log(data);
-        setPostList(data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
+      return data;
     }
-    init();
-  }, []);
+  });
 
   return (
     <section>
@@ -34,7 +23,7 @@ export function HighlightPostSection() {
             <Text tag="p">Carregando...</Text>
           ) : (
             <>
-              {postList.length > 0 ? (
+              {postList && postList.length > 0 ? (
                 <ul>
                   {postList.map((post) => (
                     <PostCard key={post.id} post={post} />
