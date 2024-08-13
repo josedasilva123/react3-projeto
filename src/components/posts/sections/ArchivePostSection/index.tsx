@@ -1,41 +1,31 @@
 import { Navigate, useParams } from "react-router-dom";
 import { Breadcrumbs } from "../../../shared/fragments/content/Breadcrumbs";
 import { TitleBox } from "../../../shared/structures/TitleBox";
-import { useEffect, useState } from "react";
-import { IPost } from "../../../../interfaces/posts.interface";
 import { postsRequest } from "../../../../data/posts/_index";
 import { PostList } from "../../structures/PostList";
 import { Text } from "../../../shared/fragments/content/Text";
 import { useCategories } from "../../../../hooks/useCategories";
+import { useQuery } from "@tanstack/react-query";
 
 export function ArchivePostSection() {
   const params = useParams();
 
-  const [loading, setLoading] = useState(false);
-  const [postList, setPostList] = useState<IPost[]>([]);
-
   const { categoryList } = useCategories();
 
-  const currentCategory = categoryList.find(
+  const currentCategory = categoryList?.find(
     (category) => category.id === Number(params.id)
   );
 
-  useEffect(() => {
-    async function init() {
-      try {
-        setLoading(true);
-        const data = await postsRequest.getMany({
-          categoryId: Number(params.id),
-        });
-        setPostList(data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
+  const { isLoading: loading, data: postList } = useQuery({
+    queryKey: ["archive_posts", params.id],
+    queryFn: async () => {
+      const data = await postsRequest.getMany({
+        categoryId: Number(params.id),
+      });
+
+      return data;
     }
-    init();
-  }, [params.id]);
+  });
 
   return currentCategory ? (
     <section>

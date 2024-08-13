@@ -3,7 +3,7 @@ import { Text } from "../../../shared/fragments/content/Text";
 import { PostCard } from "./PostCard";
 
 interface Props {
-  postList: IPost[];
+  postList?: IPost[];
   noPostsText?: string;
 }
 
@@ -11,7 +11,7 @@ export function PostList({
   postList,
   noPostsText = "Nenhum post encontrado",
 }: Props) {
-  return postList.length > 0 ? (
+  return postList && postList.length > 0 ? (
     <ul>
       {postList.map((post) => (
         <PostCard key={post.id} post={post} />
