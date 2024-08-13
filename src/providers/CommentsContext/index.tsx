@@ -2,7 +2,6 @@ import {
   createContext,
   Dispatch,
   SetStateAction,
-  useEffect,
   useState,
 } from "react";
 import {
@@ -13,7 +12,7 @@ import { commentsRequest } from "../../data/comments/_index";
 import { useParams } from "react-router-dom";
 import { useSinglePost } from "../../hooks/useSinglePost";
 import { useToast } from "../../hooks/useToast";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export interface Context {
   loading: boolean;
@@ -29,12 +28,14 @@ export interface Context {
 export const CommentsContext = createContext({} as Context);
 
 export function CommentsProvider({ children }: { children: React.ReactNode }) {
-  const [isCreateModalVisible, setIsCreateModalVisible] = useState(false);  
+  const [isCreateModalVisible, setIsCreateModalVisible] = useState(false);
 
   const params = useParams();
 
   const { post } = useSinglePost();
   const { toast } = useToast();
+
+  const client = useQueryClient();
 
   const { isLoading: loading, data: commentList } = useQuery({
     queryKey: ["comments", params.id],
@@ -42,7 +43,29 @@ export function CommentsProvider({ children }: { children: React.ReactNode }) {
       const data = await commentsRequest.getManyFromPost(params.id!);
 
       return data;
-    }
+    },
+  });
+
+  const addCommentMutation = useMutation({
+    mutationFn: async (formData: Omit<TCommentCreateData, "postId">) => {
+      const body: TCommentCreateData = {
+        author: formData.author,
+        text: formData.text,
+        postId: post!.id,
+      };
+
+      const data = await commentsRequest.create(body);
+
+      return data;
+    },
+    onSuccess: (data) => {
+      client.setQueryData(
+        ["comments", params.id],
+        (commentList: IComment[]) => [...commentList, data]
+      );
+      setIsCreateModalVisible(false);
+      toast("Comentário adicionado com sucesso", "sucess");
+    },
   });
 
   async function addComment(
@@ -51,16 +74,7 @@ export function CommentsProvider({ children }: { children: React.ReactNode }) {
   ) {
     try {
       setLoading(true);
-      const body: TCommentCreateData = {
-        author: formData.author,
-        text: formData.text,
-        postId: post!.id,
-      };
-
-      const data = await commentsRequest.create(body);
-      setCommentList((commentList) => [...commentList, data]);
-      setIsCreateModalVisible(false);
-      toast("Comentário adicionado com sucesso", "sucess");
+      await addCommentMutation.mutateAsync(formData);      
     } catch (error) {
       console.log(error);
     } finally {
@@ -69,7 +83,15 @@ export function CommentsProvider({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <CommentsContext.Provider value={{ loading, commentList, addComment, isCreateModalVisible, setIsCreateModalVisible }}>
+    <CommentsContext.Provider
+      value={{
+        loading,
+        commentList,
+        addComment,
+        isCreateModalVisible,
+        setIsCreateModalVisible,
+      }}
+    >
       {children}
     </CommentsContext.Provider>
   );
