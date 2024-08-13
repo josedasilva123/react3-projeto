@@ -1,12 +1,13 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { IPost } from "../../interfaces/posts.interface";
 import { postsRequest } from "../../data/posts/_index";
 import { AxiosError } from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 export interface Context {
   loading: boolean;
-  post: IPost | null;
+  post?: IPost | null;
 }
 
 export const PostContext = createContext({} as Context);
@@ -15,28 +16,25 @@ export function PostProvider({ children }: { children: React.ReactNode }) {
   const params = useParams();
   const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(false);
-  const [post, setPost] = useState<IPost | null>(null);
-
-  useEffect(() => {
-    async function init() {
+  const { isLoading: loading, data: post } = useQuery({
+    queryKey: ["post", params.id],
+    queryFn: async () => {
       try {
-        setLoading(true);
         const data = await postsRequest.getOne(params.id!);
-        setPost(data);
+
+        return data;
       } catch (error) {
-        if(error instanceof AxiosError){
-          if(error.response?.status === 404){
+        if (error instanceof AxiosError) {
+          if (error.response?.status === 404) {
             navigate("/404");
           }
         }
-        console.log(error); 
-      } finally {
-        setLoading(false);
+        console.log(error);
+
+        return null;
       }
-    }
-    init();
-  }, [navigate, params.id]);
+    },
+  });
 
   return (
     <PostContext.Provider value={{ loading, post }}>
