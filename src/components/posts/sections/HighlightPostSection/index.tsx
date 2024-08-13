@@ -11,7 +11,7 @@ export function HighlightPostSection() {
       const data = await postsRequest.getMany({ categoryId: 1, _limit: 2 });
 
       return data;
-    }
+    },
   });
 
   return (
@@ -28,19 +28,18 @@ export function HighlightPostSection() {
                   {postList.map((post) => (
                     <PostCard key={post.id} post={post} />
                   ))}
+                  <li>
+                    <Text tag="p">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Nunc tincidunt
+                    </Text>
+                  </li>
                 </ul>
               ) : (
                 <Text tag="p">Nenhum post cadastrado.</Text>
               )}
             </>
           )}
-
-          <li>
-            <Text tag="p">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              tincidunt
-            </Text>
-          </li>
         </div>
       </div>
     </section>
