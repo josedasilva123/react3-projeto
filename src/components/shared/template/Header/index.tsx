@@ -12,7 +12,7 @@ export function Header() {
 
       <button>Modo de cor</button>
 
-      <Button onClick={() => setIsVisible(true)}>menu</Button>
+      <Button buttonColor="outline" onClick={() => setIsVisible(true)}>menu</Button>
       {isVisible ? <ModalMenu onClose={() => setIsVisible(false)} /> : null}
     </header>
   );

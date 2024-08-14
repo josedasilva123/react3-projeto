@@ -17,7 +17,7 @@ export function PostCard({ post }: Props) {
           <CategoryName categoryId={post.categoryId} />
           <Title tag="h3" size="three" titleStyle="secondary">{post.title}</Title>
         </div>
-        <Button>Ir para o post</Button>
+        <Button buttonColor="solid2" size="round">-&gt;</Button>
       </Link>
     </li>
   );

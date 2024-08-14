@@ -9,7 +9,7 @@ export function CreateCommentModal() {
   const { isCreateModalVisible, setIsCreateModalVisible } = useComments();
   return (
     <>
-      <Button onClick={() => setIsCreateModalVisible(true)}>
+      <Button buttonColor="solid1" onClick={() => setIsCreateModalVisible(true)}>
         Deixar comentário
       </Button>
       {isCreateModalVisible ? (

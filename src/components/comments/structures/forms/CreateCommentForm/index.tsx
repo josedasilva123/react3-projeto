@@ -38,7 +38,7 @@ export function CreateCommentForm() {
         required
         disabled={loading}
       />
-      <Button type="submit" disabled={loading}>
+      <Button buttonColor="solid1" type="submit" disabled={loading}>
         {loading ? "Comentando..." : "Comentar"}
       </Button>
     </form>
