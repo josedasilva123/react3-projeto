@@ -29,3 +29,23 @@
         font-size: 1rem;
     }
 }
+
+.text{
+    font-family: var(--font-secondary);
+    font-weight: 400;
+    font-size: 1.125rem;
+    line-height: 1.8; 
+    color: var(--color-black);
+
+    &.md{
+        font-size: 1rem;
+    }
+
+    &.sm{
+        font-size: 0.75rem;
+    }
+
+    &.opacity{
+        opacity: .5;
+    }
+}
