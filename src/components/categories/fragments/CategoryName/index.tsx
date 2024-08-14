@@ -8,9 +8,9 @@ interface Props {
 export function CategoryName({ categoryId }: Props) {
   const { categoryList } = useCategories();
 
-  const currentCategory = categoryList.find(
+  const currentCategory = categoryList?.find(
     (category) => category.id === categoryId
   );
 
-  return currentCategory ? <Text tag="span">{currentCategory.label}</Text> : null;
+  return currentCategory ? <Text tag="span" size="sm">{currentCategory.label}</Text> : null;
 }

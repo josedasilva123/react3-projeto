@@ -15,7 +15,7 @@ export function CreateCommentModal() {
       {isCreateModalVisible ? (
         <Modal onClose={() => setIsCreateModalVisible(false)}>
           <Title tag="h2" size="two" titleStyle="primary" italic>Comentar</Title>
-          <Text tag="p">Preencha os campos para adicionar um comentário</Text>
+          <Text tag="p" size="md">Preencha os campos para adicionar um comentário</Text>
           <CreateCommentForm />
         </Modal>
       ) : null}

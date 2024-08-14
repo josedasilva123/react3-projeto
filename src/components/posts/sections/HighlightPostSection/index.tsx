@@ -32,14 +32,14 @@ export function HighlightPostSection() {
                     <PostCard key={post.id} post={post} />
                   ))}
                   <li>
-                    <Text tag="p">
+                    <Text tag="p" size="lg">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Nunc tincidunt
                     </Text>
                   </li>
                 </ul>
               ) : (
-                <Text tag="p">Nenhum post cadastrado.</Text>
+                <Text tag="p" size="default">Nenhum post cadastrado.</Text>
               )}
             </>
           )}

@@ -2,7 +2,7 @@ import { HTMLAttributes } from "react";
 
 interface Props extends Omit<HTMLAttributes<HTMLElement>, "className"> {
   children: React.ReactNode;
-  size: "default" | "md" | "sm";
+  size: "default" | "lg" | "md" | "sm";
   opacity?: boolean;
   tag: "p" | "span";
 }

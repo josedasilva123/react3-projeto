@@ -18,6 +18,6 @@ export function PostList({
       ))}
     </ul>
   ) : (
-    <Text tag="p">{noPostsText}</Text>
+    <Text tag="p" size="default">{noPostsText}</Text>
   );
 }

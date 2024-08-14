@@ -23,7 +23,7 @@ export function PostCommentsSection() {
           ))}
         </ul>
       ) : (
-        <Text tag="p">Seja o primeiro a comentar.</Text>
+        <Text tag="p" size="default">Seja o primeiro a comentar.</Text>
       )}
     </section>
   );

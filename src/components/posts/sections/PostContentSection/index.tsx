@@ -15,9 +15,9 @@ export function PostContentSection() {
         ) : null}
 
         <Title tag="h1" size="two" titleStyle="primary" italic>{post.title}</Title>
-        {post.excerpt ? <Text tag="p">{post.excerpt}</Text> : null}
+        {post.excerpt ? <Text tag="p" size="default" opacity>{post.excerpt}</Text> : null}
 
-        <Text tag="p">{post.content}</Text>
+        <Text tag="p" size="default">{post.content}</Text>
       </div>
     </section>
   ) : null;

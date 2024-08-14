@@ -9,10 +9,10 @@ interface Props {
 export function CommentCard({ comment }: Props) {
   return (
     <li>
-      <Text tag="p">{comment.text}</Text>
+      <Text tag="p" size="md">{comment.text}</Text>
       <div>
         <LetterCircle text={comment.author} />
-        <Text tag="span">{comment.author}</Text>
+        <Text tag="span" size="md">{comment.author}</Text>
       </div>
     </li>
   );
