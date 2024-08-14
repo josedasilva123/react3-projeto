@@ -3,6 +3,7 @@ import { Title } from "../../../shared/fragments/content/Title";
 import { postsRequest } from "../../../../data/posts/_index";
 import { PostCard } from "./PostCard";
 import { useQuery } from "@tanstack/react-query";
+import { Loading } from "../../../shared/fragments/loading/Loading";
 
 export function HighlightPostSection() {
   const { isLoading: loading, data: postList } = useQuery({
@@ -22,7 +23,7 @@ export function HighlightPostSection() {
         </Title>
         <div>
           {loading ? (
-            <Text tag="p">Carregando...</Text>
+            <Loading />
           ) : (
             <>
               {postList && postList.length > 0 ? (

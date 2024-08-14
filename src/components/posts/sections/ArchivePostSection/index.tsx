@@ -6,6 +6,7 @@ import { PostList } from "../../structures/PostList";
 import { Text } from "../../../shared/fragments/content/Text";
 import { useCategories } from "../../../../hooks/useCategories";
 import { useQuery } from "@tanstack/react-query";
+import { Loading } from "../../../shared/fragments/loading/Loading";
 
 export function ArchivePostSection() {
   const params = useParams();
@@ -32,7 +33,7 @@ export function ArchivePostSection() {
       <Breadcrumbs pageTitle={currentCategory.label} />
       <TitleBox tag="h1" title={currentCategory.label} />
       {loading ? (
-        <Text tag="p">Carregando...</Text>
+        <Loading />
       ) : (
         <PostList postList={postList} />
       )}

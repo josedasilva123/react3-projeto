@@ -1,6 +1,7 @@
 import { useComments } from "../../../../hooks/useComments";
 import { Text } from "../../../shared/fragments/content/Text";
 import { Title } from "../../../shared/fragments/content/Title";
+import { Loading } from "../../../shared/fragments/loading/Loading";
 import { CreateCommentModal } from "../../structures/modals/CreateCommentModal";
 import { CommentCard } from "./CommentCard";
 
@@ -8,7 +9,7 @@ export function PostCommentsSection() {
   const { loading, commentList } = useComments();
 
   return loading ? (
-    <Text tag="p">Carregando...</Text>
+    <Loading />
   ) : (
     <section>
       <div>

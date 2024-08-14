@@ -4,6 +4,7 @@ import { useSinglePost } from "../../../../hooks/useSinglePost";
 import { Text } from "../../../shared/fragments/content/Text";
 import { PostList } from "../../structures/PostList";
 import { useQuery } from "@tanstack/react-query";
+import { Loading } from "../../../shared/fragments/loading/Loading";
 
 export function ReadmorePostSection() {
   const { post } = useSinglePost();
@@ -18,7 +19,7 @@ export function ReadmorePostSection() {
   });
 
   return loading ? (
-    <Text tag="p">Carregando...</Text>
+    <Loading />
   ) : (
     <section>
       <Title tag="h2" size="two" titleStyle="primary" italic>Leia também</Title>
