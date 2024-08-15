@@ -11,7 +11,7 @@ export function ModalMenu({ onClose }: Props) {
   const { categoryList } = useCategories();
 
   return (
-    <Modal onClose={onClose}>
+    <Modal onClose={onClose} boxPosition="right" fullHeight transparentOverlay>
       <Title tag="h2" size="one" titleStyle="primary" italic>Menu</Title>
       <ul>
         {categoryList?.map((category) => (
