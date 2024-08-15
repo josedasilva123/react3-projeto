@@ -6,7 +6,7 @@ interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 
 export function Textarea({ label, ...rest }: Props) {
   return (
-    <div>
+    <div className="field">
       {label ? <label htmlFor={rest.id}>{label}</label> : null}
       <textarea {...rest} />
     </div>

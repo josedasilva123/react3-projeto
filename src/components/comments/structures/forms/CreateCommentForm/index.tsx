@@ -17,7 +17,7 @@ export function CreateCommentForm() {
   }
 
   return (
-    <form onSubmit={submit}>
+    <form className="form" onSubmit={submit}>
       <Input
         label="Seu nome"
         id="name"
