@@ -1,10 +1,10 @@
 import { Title } from "../../../shared/fragments/content/Title";
 import { postsRequest } from "../../../../data/posts/_index";
 import { useSinglePost } from "../../../../hooks/useSinglePost";
-import { Text } from "../../../shared/fragments/content/Text";
 import { PostList } from "../../structures/PostList";
 import { useQuery } from "@tanstack/react-query";
 import { Loading } from "../../../shared/fragments/loading/Loading";
+import { Container } from "../../../shared/fragments/grid/Container";
 
 export function ReadmorePostSection() {
   const { post } = useSinglePost();
@@ -22,8 +22,12 @@ export function ReadmorePostSection() {
     <Loading />
   ) : (
     <section>
-      <Title tag="h2" size="two" titleStyle="primary" italic>Leia também</Title>
-      <PostList postList={postList} />
+      <Container>
+        <Title tag="h2" size="two" titleStyle="primary" italic>
+          Leia também
+        </Title>
+        <PostList postList={postList} />
+      </Container>
     </section>
   );
 }

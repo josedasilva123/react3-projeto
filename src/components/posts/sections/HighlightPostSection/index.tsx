@@ -4,6 +4,7 @@ import { postsRequest } from "../../../../data/posts/_index";
 import { PostCard } from "./PostCard";
 import { useQuery } from "@tanstack/react-query";
 import { Loading } from "../../../shared/fragments/loading/Loading";
+import { Container } from "../../../shared/fragments/grid/Container";
 
 export function HighlightPostSection() {
   const { isLoading: loading, data: postList } = useQuery({
@@ -17,34 +18,38 @@ export function HighlightPostSection() {
 
   return (
     <section>
-      <div>
-        <Title tag="h2" size="one" titleStyle="primary" italic>
-          Destaques
-        </Title>
+      <Container>
         <div>
-          {loading ? (
-            <Loading />
-          ) : (
-            <>
-              {postList && postList.length > 0 ? (
-                <ul>
-                  {postList.map((post) => (
-                    <PostCard key={post.id} post={post} />
-                  ))}
-                  <li>
-                    <Text tag="p" size="lg">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Nunc tincidunt
-                    </Text>
-                  </li>
-                </ul>
-              ) : (
-                <Text tag="p" size="default">Nenhum post cadastrado.</Text>
-              )}
-            </>
-          )}
+          <Title tag="h2" size="one" titleStyle="primary" italic>
+            Destaques
+          </Title>
+          <div>
+            {loading ? (
+              <Loading />
+            ) : (
+              <>
+                {postList && postList.length > 0 ? (
+                  <ul>
+                    {postList.map((post) => (
+                      <PostCard key={post.id} post={post} />
+                    ))}
+                    <li>
+                      <Text tag="p" size="lg">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nunc tincidunt
+                      </Text>
+                    </li>
+                  </ul>
+                ) : (
+                  <Text tag="p" size="default">
+                    Nenhum post cadastrado.
+                  </Text>
+                )}
+              </>
+            )}
+          </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

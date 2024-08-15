@@ -1,9 +1,9 @@
 import { Title } from "../../../shared/fragments/content/Title";
 import { postsRequest } from "../../../../data/posts/_index";
 import { PostList } from "../../structures/PostList";
-import { Text } from "../../../shared/fragments/content/Text";
 import { useQuery } from "@tanstack/react-query";
 import { Loading } from "../../../shared/fragments/loading/Loading";
+import { Container } from "../../../shared/fragments/grid/Container";
 
 export function RecentPostSection() {
   const { isLoading: loading, data: postList } = useQuery({
@@ -20,12 +20,12 @@ export function RecentPostSection() {
 
   return (
     <section>
-      <Title tag="h2" size="two" titleStyle="primary" italic>Posts Recentes</Title>
-      {loading ? (
-        <Loading />
-      ) : (
-        <PostList postList={postList} />
-      )}
+      <Container>
+        <Title tag="h2" size="two" titleStyle="primary" italic>
+          Posts Recentes
+        </Title>
+        {loading ? <Loading /> : <PostList postList={postList} />}
+      </Container>
     </section>
   );
 }
