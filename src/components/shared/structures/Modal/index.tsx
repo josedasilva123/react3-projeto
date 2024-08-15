@@ -1,4 +1,5 @@
 import { createPortal } from "react-dom";
+import styles from "./style.module.scss";
 
 interface Props {
   children: React.ReactNode;
@@ -7,9 +8,11 @@ interface Props {
 
 export function Modal({ children, onClose }: Props) {
   return createPortal(
-    <div>
-      <div role="dialog">
-        <button onClick={onClose}>Fechar</button>
+    <div className={styles.overlay}>
+      <div role="dialog" className={styles.box}>
+        <button onClick={onClose} title="Fechar" aria-label="close" className={styles.close}>
+          <span className="material-symbols-outlined">close</span>
+        </button>
         {children}
       </div>
     </div>,
