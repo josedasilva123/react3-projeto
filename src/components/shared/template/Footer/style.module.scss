@@ -1,0 +1,10 @@
+.footer{
+    border-top: 1px solid var(--color-black50);
+    padding: 30px 0;
+
+    @media (max-width: 600px){
+        p{
+            text-align: center;
+        }
+    }
+}
