@@ -5,6 +5,7 @@ import { PostCard } from "./PostCard";
 import { useQuery } from "@tanstack/react-query";
 import { Loading } from "../../../shared/fragments/loading/Loading";
 import { Container } from "../../../shared/fragments/grid/Container";
+import styles from "./style.module.scss";
 
 export function HighlightPostSection() {
   const { isLoading: loading, data: postList } = useQuery({
@@ -29,7 +30,7 @@ export function HighlightPostSection() {
             ) : (
               <>
                 {postList && postList.length > 0 ? (
-                  <ul>
+                  <ul className={styles.list}>
                     {postList.map((post) => (
                       <PostCard key={post.id} post={post} />
                     ))}
