@@ -4,6 +4,7 @@ import { PostList } from "../../structures/PostList";
 import { useQuery } from "@tanstack/react-query";
 import { Loading } from "../../../shared/fragments/loading/Loading";
 import { Container } from "../../../shared/fragments/grid/Container";
+import styles from "./style.module.scss";
 
 export function RecentPostSection() {
   const { isLoading: loading, data: postList } = useQuery({
@@ -19,7 +20,7 @@ export function RecentPostSection() {
   });
 
   return (
-    <section>
+    <section className={styles.section}>
       <Container>
         <Title tag="h2" size="two" titleStyle="primary" italic>
           Posts Recentes

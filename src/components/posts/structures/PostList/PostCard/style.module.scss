@@ -1,0 +1,14 @@
+.card{
+    img{
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+        border-radius: 25px;
+        margin-bottom: 30px;
+    }
+    
+    span{
+        display: inline-flex;
+        margin-bottom: 15px;
+    }
+}
