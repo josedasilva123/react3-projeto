@@ -1,0 +1,35 @@
+.card{
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+
+    .image{
+        width: 100%;
+    }
+
+    .box{
+        position: absolute;
+        left: 20px;
+        bottom: 20px;
+
+        max-width: 260px;
+
+        span{
+            background: var(--color-white);
+            padding: 8px 15px;
+            border-radius: 12px 12px 0 0;
+        }
+
+        h3{
+            background: var(--color-white);
+            padding: 15px;
+            border-radius: 0 12px 12px 12px;
+        }
+    }
+
+    a > button{
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+}
