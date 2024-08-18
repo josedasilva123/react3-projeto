@@ -3,8 +3,29 @@
     overflow: hidden;
     border-radius: 30px;
 
+    height: 260px;
+    background: var(--color-gray1);
+
+    &:first-child{
+        height: 550px;
+
+        .box{
+            max-width: 380px;
+
+            span{
+                font-size: 1rem;
+            }
+
+            h3{
+                font-size: clamp(1.125rem, 3.5vw, 1.5rem);
+            }
+        }
+    }
+
     .image{
         width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .box{
