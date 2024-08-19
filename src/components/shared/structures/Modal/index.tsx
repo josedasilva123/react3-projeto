@@ -1,5 +1,6 @@
 import { createPortal } from "react-dom";
 import styles from "./style.module.scss";
+import { useOutClick } from "../../../../hooks/useOutClick";
 
 interface Props {
   children: React.ReactNode;
@@ -16,6 +17,8 @@ export function Modal({
   fullHeight,
   boxPosition,
 }: Props) {
+  const ref = useOutClick<HTMLDivElement>(onClose);
+
   function getBoxPosition() {
     if (boxPosition === "right") {
       return styles.right;
@@ -36,6 +39,7 @@ export function Modal({
         ${getBoxPosition()}`}
     >
       <div
+        ref={ref}      
         role="dialog"
         className={`
           ${styles.box} 
