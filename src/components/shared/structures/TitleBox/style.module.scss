@@ -1,0 +1,8 @@
+.box{
+    padding: 30px clamp(16px, 4vw, 40px);
+    background: var(--color-gray1);
+    border-radius: 25px;
+    
+    margin-top: 30px;
+    margin-bottom: 40px;
+}

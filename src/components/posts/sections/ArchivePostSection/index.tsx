@@ -7,6 +7,7 @@ import { useCategories } from "../../../../hooks/useCategories";
 import { useQuery } from "@tanstack/react-query";
 import { Loading } from "../../../shared/fragments/loading/Loading";
 import { Container } from "../../../shared/fragments/grid/Container";
+import styles from "./style.module.scss";
 
 export function ArchivePostSection() {
   const params = useParams();
@@ -29,7 +30,7 @@ export function ArchivePostSection() {
   });
 
   return currentCategory ? (
-    <section>
+    <section className={styles.section}>
       <Container>
         <Breadcrumbs pageTitle={currentCategory.label} />
         <TitleBox tag="h1" title={currentCategory.label} />
