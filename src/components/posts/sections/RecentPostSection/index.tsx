@@ -20,7 +20,7 @@ export function RecentPostSection() {
   });
 
   return (
-    <section className={styles.section}>
+    <section id="recentes" className={styles.section}>
       <Container>
         <Title tag="h2" size="two" titleStyle="primary" italic>
           Posts Recentes

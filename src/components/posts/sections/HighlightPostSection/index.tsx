@@ -18,7 +18,7 @@ export function HighlightPostSection() {
   });
 
   return (
-    <section>
+    <section id="destaques">
       <Container>
         <div>
           <Title tag="h2" size="one" titleStyle="primary" italic>

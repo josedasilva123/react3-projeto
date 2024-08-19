@@ -4,6 +4,7 @@ import { Footer } from "../Footer";
 import { useCategories } from "../../../../hooks/useCategories";
 import { Loading } from "../../fragments/loading/Loading";
 import { useColorMode } from "../../../../hooks/useColorMode";
+import { ScrollReseter } from "../ScrollReseter";
 
 interface Props {
   children: React.ReactNode;
@@ -17,6 +18,7 @@ export function Template({ children }: Props) {
     <Loading />
   ) : (
     <div className={colorMode}>
+      <ScrollReseter />
       <Header />
       <main>{children}</main>
       <Footer />
