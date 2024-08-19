@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Logo from "../../../../assets/LogoBlogSpot.svg";
+import LogoWhite from "../../../../assets/LogoBlogSpotBranca.svg";
 import { Button } from "../../fragments/buttons/Button";
 import { ModalMenu } from "./ModalMenu";
 import { Container } from "../../fragments/grid/Container";
@@ -17,7 +18,11 @@ export function Header() {
       <Container>
         <div className={styles.box}>
           <Link to="/">
-            <img className={styles.logo} src={Logo} alt="Logo BlogSpot" />
+            <img
+              className={styles.logo}
+              src={colorMode === "light" ? Logo : LogoWhite}
+              alt="Logo BlogSpot"
+            />
           </Link>
 
           <div>

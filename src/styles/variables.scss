@@ -1,10 +1,25 @@
 :root{
     --font-primary: "Poppins", sans-serif;
     --font-secondary: "Sora", sans-serif;
+    
+}
+
+body{
     --color-white: #FFFFFF;
     --color-black: #000000;
     --color-black20: #00000033;
     --color-black50: #00000080;
     --color-gray1: #E1EFF1;
     --color-gray2: #EEEEEE;
+
+    background: var(--color-white);
+}
+
+body:has(div.dark){
+    --color-white: #000000;
+    --color-black: #FFFFFF;
+    --color-black20: #ffffff33;
+    --color-black50: #ffffff80;
+    --color-gray1: #002025;
+    --color-gray2: #121212;
 }
