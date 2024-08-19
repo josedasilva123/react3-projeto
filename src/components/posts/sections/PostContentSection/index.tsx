@@ -3,31 +3,34 @@ import { Breadcrumbs } from "../../../shared/fragments/content/Breadcrumbs";
 import { Text } from "../../../shared/fragments/content/Text";
 import { Title } from "../../../shared/fragments/content/Title";
 import { Container } from "../../../shared/fragments/grid/Container";
+import styles from "./style.module.scss";
 
 export function PostContentSection() {
   const { post } = useSinglePost();
 
   return post ? (
-    <section>
+    <section className={styles.section}>
       <Container size="sm">
         <Breadcrumbs pageTitle={post.title} />
         <div>
           {post.image ? (
-            <img src={post.image} alt={`Ilustração para post ${post.title}`} />
+            <img className={styles.thumb} src={post.image} alt={`Ilustração para post ${post.title}`} />
           ) : null}
 
-          <Title tag="h1" size="two" titleStyle="primary" italic>
-            {post.title}
-          </Title>
-          {post.excerpt ? (
-            <Text tag="p" size="default" opacity>
-              {post.excerpt}
+          <div className={styles.content}>
+            <Title tag="h1" size="two" titleStyle="primary" italic>
+              {post.title}
+            </Title>
+            {post.excerpt ? (
+              <Text tag="p" size="default" opacity>
+                {post.excerpt}
+              </Text>
+            ) : null}
+
+            <Text tag="p" size="default">
+              {post.content}
             </Text>
-          ) : null}
-
-          <Text tag="p" size="default">
-            {post.content}
-          </Text>
+          </div>
         </div>
       </Container>
     </section>
