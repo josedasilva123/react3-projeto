@@ -5,8 +5,11 @@ import { ModalMenu } from "./ModalMenu";
 import { Container } from "../../fragments/grid/Container";
 import styles from "./style.module.scss";
 import { Link } from "react-router-dom";
+import { useColorMode } from "../../../../hooks/useColorMode";
 
 export function Header() {
+  const { colorMode, changeColorMode } = useColorMode();
+
   const [isVisible, setIsVisible] = useState(false);
 
   return (
@@ -18,8 +21,17 @@ export function Header() {
           </Link>
 
           <div>
-            <button title="Alterar modo de cor" aria-label="colormode">
-              <span className="material-symbols-outlined">light_mode</span>
+            <button
+              className={styles.button}
+              onClick={changeColorMode}
+              title="Alterar modo de cor"
+              aria-label="colormode"
+            >
+              {colorMode === "light" ? (
+                <span className="material-symbols-outlined">light_mode</span>
+              ) : (
+                <span className="material-symbols-outlined">dark_mode</span>
+              )}
             </button>
 
             <Button buttonColor="outline" onClick={() => setIsVisible(true)}>
