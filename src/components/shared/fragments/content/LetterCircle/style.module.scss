@@ -1,0 +1,16 @@
+.circle{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 3rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+    background: var(--color-gray1);
+
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-black);
+}

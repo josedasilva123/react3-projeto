@@ -5,6 +5,7 @@ import { Container } from "../../../shared/fragments/grid/Container";
 import { Loading } from "../../../shared/fragments/loading/Loading";
 import { CreateCommentModal } from "../../structures/modals/CreateCommentModal";
 import { CommentCard } from "./CommentCard";
+import styles from "./style.module.scss";
 
 export function PostCommentsSection() {
   const { loading, commentList } = useComments();
@@ -12,16 +13,16 @@ export function PostCommentsSection() {
   return loading ? (
     <Loading />
   ) : (
-    <section>
+    <section className={styles.section}>
       <Container size="sm">
-        <div>
+        <div className={styles.header}>
           <Title tag="h2" size="three" titleStyle="secondary">
             Comentários
           </Title>
           <CreateCommentModal />
         </div>
         {commentList && commentList.length > 0 ? (
-          <ul>
+          <ul className={styles.list}>
             {commentList.map((comment) => (
               <CommentCard key={comment.id} comment={comment} />
             ))}
