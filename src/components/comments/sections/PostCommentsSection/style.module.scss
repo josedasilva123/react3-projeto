@@ -1,0 +1,18 @@
+.section{
+    padding: 20px 0 80px;
+
+    .header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+
+    .list{
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+}

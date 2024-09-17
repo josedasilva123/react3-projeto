@@ -1,0 +1,48 @@
+.form{
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 20px;
+}
+
+%fieldDefaults{
+    width: 100%;
+
+    font-family: var(--font-secondary);
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.4;
+
+    background: var(--color-gray2);
+    border-radius: 1.75rem;
+
+    color: var(--color-black);
+}
+
+.field{
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    label{
+        font-family: var(--font-primary);
+        font-size: 1rem;
+        font-weight: 400;
+        color: var(--color-black);
+    }
+
+    input{
+        @extend %fieldDefaults;
+        padding: 0 25px;
+        height: 3.5rem;
+    }
+
+    textarea{
+        @extend %fieldDefaults;
+        resize: none;
+        padding: 25px;
+        height: 9.6875rem;
+    }
+}

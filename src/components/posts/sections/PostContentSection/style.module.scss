@@ -1,0 +1,15 @@
+.section{
+    padding: 80px 0;
+
+    .thumb{
+        margin-top: 30px;
+        border-radius: 30px;
+    }
+    
+    .content{
+        margin-top: 60px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+}

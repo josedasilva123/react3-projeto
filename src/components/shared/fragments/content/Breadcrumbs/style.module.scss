@@ -1,0 +1,16 @@
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--color-black);
+  white-space: nowrap;
+
+  p {
+    white-space: wrap;
+  }
+}
